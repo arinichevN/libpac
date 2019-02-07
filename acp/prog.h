@@ -14,6 +14,8 @@
 #define ACP_CMD_PROG_GET_ENABLED "pgenl"
 #define ACP_CMD_PROG_SET_SAVE "pssave"
 #define ACP_CMD_PROG_GET_ERROR "pgerr"
+#define ACP_CMD_PROG_NEXT_STEP "pnstp"
+#define ACP_CMD_PROG_PREV_STEP "ppstp"
 
 #endif
 
