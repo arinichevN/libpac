@@ -35,5 +35,7 @@ extern int db_saveTableFieldFloat(const char * table, const char *field, int id,
 
 extern int db_saveTableFieldText(const char * table, const char *field, int id, const char *value, sqlite3 *dbl, const char* db_path);
 
+extern int db_clearTable(const char * table, sqlite3 *dbl, const char *db_path);
+
 #endif 
 

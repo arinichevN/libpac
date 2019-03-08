@@ -168,3 +168,21 @@ int db_saveTableFieldText(const char * table, const char *field, int id, const c
     if (close) sqlite3_close(db);
     return 1;
 }
+
+int db_clearTable(const char * table, sqlite3 *dbl, const char *db_path) {
+   int close=0;
+    sqlite3 *db=db_openAlt ( dbl, db_path, &close );
+    if ( db==NULL ) {
+        putsde ( " failed\n" );
+        return 0;
+    }
+    char q[LINE_SIZE];
+    snprintf ( q, sizeof q, "delete from %s", table );
+    if ( !db_exec ( db, q, 0, 0 ) ) {
+        putsde ( " failed\n" );
+        if ( close ) db_close ( db );
+        return 0;
+    }
+    if ( close ) db_close ( db );
+    return 1;
+}

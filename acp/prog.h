@@ -8,6 +8,8 @@
 #define ACP_CMD_PROG_DISABLE "pdsl"
 #define ACP_CMD_PROG_ADD "padd"
 #define ACP_CMD_PROG_DELETE "pdel"
+#define ACP_CMD_PROG_DELETE_ALL "pdelall"
+#define ACP_CMD_PROG_ADD "padd"
 #define ACP_CMD_PROG_GET_DATA_RUNTIME "pgdr"
 #define ACP_CMD_PROG_GET_DATA_INIT "pgdi"
 #define ACP_CMD_PROG_GET_DATA "pgd"
@@ -16,6 +18,7 @@
 #define ACP_CMD_PROG_GET_ERROR "pgerr"
 #define ACP_CMD_PROG_NEXT_STEP "pnstp"
 #define ACP_CMD_PROG_PREV_STEP "ppstp"
+#define ACP_CMD_PROG_GET_ALL "pgall"
 
 #endif
 

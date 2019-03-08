@@ -15,6 +15,8 @@
 #define ACP_CMD_CHANNEL_GET_ENABLED "cgenl"
 #define ACP_CMD_CHANNEL_SET_SAVE "cssave"
 #define ACP_CMD_CHANNEL_GET_ERROR "cgerr"
+#define ACP_CMD_CHANNEL_PROG_GET_ALL "cpgall"
+#define ACP_CMD_CHANNEL_PROG_SAVE "cpsave"
 
 #endif
 

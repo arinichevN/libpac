@@ -5,6 +5,7 @@
 #define ACP_CMD_GET_FTS "gfts"
 #define ACP_CMD_GET_ITS "gits"
 #define ACP_CMD_GET_INT "gi"
+#define ACP_CMD_GET_NEXT_ITEM "gni"
 #define ACP_CMD_SET_FLOAT "sf"
 #define ACP_CMD_SET_INT "si"
 

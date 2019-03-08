@@ -61,6 +61,8 @@
 #define FORMLi for (size_t i = 0; i < list->max_length; i++) 
 #define FORLISTP(L, I) for (size_t I = 0; I < (L)->length; I++) 
 #define FORLISTN(L, I) for (size_t I = 0; I < (L).length; I++) 
+#define FORLISTMP(L, I) for (size_t I = 0; I < (L)->max_length; I++) 
+#define FORLISTMN(L, I) for (size_t I = 0; I < (L).max_length; I++) 
 #define FORLIST(I) for (size_t I = 0; I < list->length; I++) 
 #define FORLLj  for (size_t j = i + 1; j < list->length; j++) 
 #define FORLISTPL(L, I, J)  for (size_t J = I + 1; J < (L)->length; J++) 
@@ -158,6 +160,8 @@
 #define STOP_ALL_LIST_THREADS(list) FORLISTP(list, i){pthread_cancel((list)->item[i].thread);} FORLISTP(list, i){void * result;pthread_join((list)->item[i].thread, &result);}
 #endif
 
+#define STOP_THREAD(item) pthread_cancel(item);pthread_join(item, NULL);
+
 #define FUN_LOCK(T) int lock ## T (T *item) {if (item == NULL) {return 0;} if (pthread_mutex_lock(&(item->mutex.self)) != 0) {return 0;}return 1;}
 #define FUN_TRYLOCK(T) int tryLock ## T (T  *item) {if (item == NULL) {return 0;} if (pthread_mutex_trylock(&(item->mutex.self)) != 0) {return 0;}return 1;}
 #define FUN_UNLOCK(T) int unlock ## T (T *item) {if (item == NULL) {return 0;} if (pthread_mutex_unlock(&(item->mutex.self)) != 0) {return 0;}return 1;}
@@ -176,6 +180,8 @@ enum {
 } State;
 
 
+
+
 typedef struct {
     char *buf;
     size_t *s1_offset;
@@ -191,13 +197,18 @@ typedef struct {
 
 extern int s1blist_push(size_t min_buf_alloc_length, size_t min_item_alloc_length, S1BList *list, const char *str);
 
+enum {
+    APP_MUTEX_INIT,
+    APP_MUTEX_CREATED,
+    APP_MUTEX_INITIALIZED
+} AppMutexState;
+
 typedef struct {
     pthread_mutex_t self;
     pthread_mutexattr_t attr;
-    int created;
-    int attr_initialized;
+    int state;
 } Mutex;
-#define MUTEX_INITIALIZER {.self=PTHREAD_MUTEX_INITIALIZER, .created = 0, .attr_initialized = 0}
+#define MUTEX_INITIALIZER {.self=PTHREAD_MUTEX_INITIALIZER, .state = APP_MUTEX_INIT}
 //#define MUTEX pthread_mutex_t
 //#define DEF_MUTEX(V) pthread_mutex_t V = PTHREAD_MUTEX_INITIALIZER;
 //#define IF_LOCK_MUTEX(P) if(pthread_mutex_lock(P) != 0)
