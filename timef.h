@@ -92,6 +92,8 @@ extern void delayTsIdleRest ( struct timespec interval, struct timespec start );
 
 extern void delayUsIdle(unsigned int td);
 
+extern void delayTsIdle ( struct timespec interval ) ;
+
 extern void sleepRest(struct timespec total, struct timespec start);
 
 extern struct timespec usToTimespec(long int us);
