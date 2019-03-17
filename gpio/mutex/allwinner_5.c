@@ -172,6 +172,15 @@ static void makeData() {
     }
 }
 
+void gpioFree() {
+    if ( gpio_buf !=NULL && gpio_buf!=MAP_FAILED ) {
+        if ( munmap ( ( void* ) gpio_buf, mmap_length ) !=0 ) {
+            perrord ( "munmap()" );
+        }
+    }
+    freeMutex ( &gpio_mutex );
+}
+
 int gpioSetup() {
     int fd = open ( "/dev/mem", O_RDWR | O_SYNC | O_CLOEXEC );
     if ( fd  < 0 ) {
@@ -203,11 +212,4 @@ int gpioSetup() {
     return 1;
 }
 
-void gpioFree() {
-    if ( gpio_buf !=NULL && gpio_buf!=MAP_FAILED ) {
-        if ( munmap ( ( void* ) gpio_buf, mmap_length ) !=0 ) {
-            perrord ( "munmap()" );
-        }
-    }
-    freeMutex ( &gpio_mutex );
-}
+

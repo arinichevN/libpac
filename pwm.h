@@ -11,9 +11,10 @@
 
 typedef struct {
     int state;
-    struct timespec start_time;
+    struct timespec delay_busy;
+    struct timespec delay_idle;
     struct timespec toggle_time;//time when we must change state from busy to idle or reverse
-    struct timespec single_time;//(duty_cycle_max - duty_cycle_min)/resolution
+    double single_time;//(duty_cycle_max - duty_cycle_min)/resolution
     
     int resolution;//0 is 0% of power (duty_cycle will be set to PWM.duty_cycle_min) PWM.resolution is 100% of power (duty_cycle will be set to PWM.duty_cycle_max)
     struct timespec period;
@@ -28,7 +29,8 @@ extern int pwm_setPeriod ( PWM *item, struct timespec v ) ;
 extern int pwm_setResolution ( PWM *item, int v ) ;
 extern int pwm_setDutyCycleMin ( PWM *item, struct timespec v ) ;
 extern int pwm_setDutyCycleMax ( PWM *item, struct timespec v ) ;
-extern int pwm_control( PWM *item, int duty_cycle );
+extern void pwm_setDutyCycle (PWM *item, double duty_cycle);
+extern int pwm_control( PWM *item );
 
 #endif /* PWM_H */
 

@@ -214,14 +214,14 @@ struct timespec getTimePassed_tv ( const Ton_ts *t ) {
     return dif;
 }
 
-struct timespec getTimePassed_ts ( struct timespec t ) {
+struct timespec getTimePassed ( struct timespec t ) {
     struct timespec now, dif;
     clock_gettime ( LIB_CLOCK, &now );
     timespecsub ( &now, &t, &dif );
     return dif;
 }
 
-struct timespec getTimeRest_ts ( struct timespec t_interval, struct timespec t_start ) {
+struct timespec getTimeRest ( struct timespec t_interval, struct timespec t_start ) {
     struct timespec now, out, sum;
     clock_gettime ( LIB_CLOCK, &now );
     timespecadd ( &t_interval, &t_start, &sum );
@@ -232,7 +232,7 @@ struct timespec getTimeRest_ts ( struct timespec t_interval, struct timespec t_s
 struct timespec getTimeRestTmr ( struct timespec interval, Ton_ts tmr ) {
     struct timespec out = {-1, -1};
     if ( tmr.ready ) {
-        out = getTimeRest_ts ( interval, tmr.start );
+        out = getTimeRest ( interval, tmr.start );
     }
     return out;
 }

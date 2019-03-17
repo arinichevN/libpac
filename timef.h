@@ -122,9 +122,9 @@ extern struct timespec tonTimeRest ( const Ton *item ) ;
 
 extern struct timespec getTimePassed_tv(const Ton_ts *t);
 
-extern struct timespec getTimePassed_ts(struct timespec t);
+extern struct timespec getTimePassed(struct timespec t);
 
-extern struct timespec getTimeRest_ts(struct timespec t_interval, struct timespec t_start);
+extern struct timespec getTimeRest(struct timespec t_interval, struct timespec t_start);
 
 extern struct timespec getTimeRestTmr(struct timespec interval, Ton_ts tmr);
 

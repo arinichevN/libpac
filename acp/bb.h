@@ -1,11 +1,10 @@
 
-#ifndef LIBPAS_STP_H
-#define LIBPAS_STP_H
+#ifndef LIBPAS_BB_H
+#define LIBPAS_BB_H
 
-#define ACP_CMD_BB_CHANNEL_PROG_SAVE_GOAL "bbcpsg"
-#define ACP_CMD_BB_CHANNEL_PROG_SAVE_DELTA "bbcpsd"
-#define ACP_CMD_BB_CHANNEL_CLOSE "bbccls"
-#define ACP_CMD_BB_CHANNEL_OPEN "bbcopn"
+#define ACP_CMD_BB_RACK_SET_TEMPERATURE "bbrstemp"
+#define ACP_CMD_BB_RACK_FLYTE_CLOSE "bbrfc"
+#define ACP_CMD_BB_RACK_FLYTE_OPEN "bbrfo"
 
 #endif 
 
